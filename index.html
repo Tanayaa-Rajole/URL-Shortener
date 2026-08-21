@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shortly — a fast, beautiful URL shortener." />
+  <title>Shortly — URL Shortener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <main class="shell">
+    <nav class="nav">
+      <a class="brand" href="/">
+        <span class="brand-mark">↗</span>
+        <span>Shortly</span>
+      </a>
+      <span class="nav-pill">Fast · Simple · Free</span>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow"><span></span> YOUR LINKS, JUST SHORTER</div>
+      <h1>Turn long links into<br /><em>tiny moments.</em></h1>
+      <p class="hero-copy">
+        Paste a URL. Get a clean, shareable link in seconds.
+        No account. No nonsense.
+      </p>
+
+      <form id="shorten-form" class="shortener-card">
+        <div class="input-row">
+          <div class="input-wrap">
+            <span class="input-icon">↗</span>
+            <input
+              id="url"
+              name="url"
+              type="url"
+              placeholder="https://your-very-long-url.com/..."
+              autocomplete="url"
+              required
+            />
+          </div>
+          <button id="shorten-btn" type="submit">
+            <span>Shorten URL</span>
+            <span class="button-arrow">→</span>
+          </button>
+        </div>
+
+        <div class="custom-row">
+          <label class="toggle">
+            <input type="checkbox" id="custom-toggle" />
+            <span class="slider"></span>
+            Custom alias
+          </label>
+          <div id="alias-wrap" class="alias-wrap hidden">
+            <span>/</span>
+            <input
+              id="alias"
+              type="text"
+              placeholder="my-link"
+              minlength="3"
+              maxlength="30"
+              pattern="[a-zA-Z0-9_-]{3,30}"
+            />
+          </div>
+          <span class="hint">3–30 chars · letters, numbers, _ or -</span>
+        </div>
+      </form>
+
+      <div id="result" class="result-card hidden"></div>
+      <div id="error" class="error hidden"></div>
+    </section>
+
+    <section class="recent-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">RECENT LINKS</span>
+          <h2>Your latest shortcuts</h2>
+        </div>
+        <button id="refresh-btn" class="ghost-btn" type="button">↻ Refresh</button>
+      </div>
+
+      <div id="links-list" class="links-list">
+        <div class="empty-state">
+          <div class="empty-icon">⌁</div>
+          <h3>No links yet</h3>
+          <p>Your shortened links will show up here.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Built with Node.js + SQLite</span>
+      <span>© <span id="year"></span> Shortly</span>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
